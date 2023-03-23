@@ -1,0 +1,55 @@
+﻿@model OnlineRetailManagement.Models.Product
+
+@{
+    ViewData["Title"] = "AddProductId";
+}
+
+<h1>@ViewBag.Msg</h1>
+
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddProductId">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="productname" class="control-label"></label>
+                <input asp-for="productname" class="form-control" />
+                <span asp-validation-for="productname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="productdescription" class="control-label"></label>
+                <input asp-for="productdescription" class="form-control" />
+                <span asp-validation-for="productdescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="productid" class="control-label"></label>
+                <input asp-for="productid" class="form-control" />
+                <span asp-validation-for="productid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="productprice" class="control-label"></label>
+                <input asp-for="productprice" class="form-control" />
+                <span asp-validation-for="productprice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="url" class="control-label"></label>
+                <input asp-for="url" class="form-control" />
+                <span asp-validation-for="url" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="status" /> @Html.DisplayNameFor(model => model.status)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

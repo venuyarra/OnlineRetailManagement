@@ -11,27 +11,55 @@ namespace OnlineRetailManagement.Repository
         }
         public bool AddProductId(Product product)
         {
-            throw new NotImplementedException();
+            var t=_context.products.FirstOrDefault(x=>x.productid==product.productid);
+            if (t == null)
+            {
+                _context.products.Add(product);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
+          
+           
         }
 
-        public bool DeleteProductId(Product product)
+        public bool DeleteProductId(int id)
         {
-            throw new NotImplementedException();
+            var product = _context.products.Find(id);
+            if (product != null)
+            {
+                _context.products.Remove(product);
+                _context.SaveChanges();
+                return true;
+            }
+           
+            return false;
+          
         }
 
         public List<Orders> GetAllOrders()
         {
-            throw new NotImplementedException();
+            return _context.orders.ToList();
+         
         }
 
         public List<Product> GetAllProducts()
         {
-            throw new NotImplementedException();
+
+            return _context.products.ToList();
+            
+        }
+        public Product GetProductbyId(int id)
+        {
+            return _context.products.Find(id);
         }
 
-        public bool UpdateProductId(Product product)
+        public bool UpdateProduct(Product product)
         {
-            throw new NotImplementedException();
+            _context.products.Update(product);
+            _context.SaveChanges();
+            return true;
+            
         }
         public bool GetUser(User user)
         {

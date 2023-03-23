@@ -5,17 +5,19 @@ using OnlineRetailManagement.Models;
 using System.Security.Claims;
 using OnlineRetailManagement.Repository;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Identity;
 
 namespace OnlineRetailManagement.Controllers
 {
     public class AdminController : Controller
     {
         private IAdminRepository _adminRepository;
-     
+        
 
         public AdminController(IAdminRepository adminRepository) 
         {
             _adminRepository = adminRepository;
+           
         }
 
         public IActionResult Login(string ReturnUrl)
@@ -26,6 +28,7 @@ namespace OnlineRetailManagement.Controllers
         [HttpPost]
         public IActionResult Login(Login login)
         {
+            TempData["id"] = "";
             if (ModelState.IsValid)
             {
                 if (login.email == "admin@gmail.com" && login.password == "admin123")
@@ -91,5 +94,82 @@ namespace OnlineRetailManagement.Controllers
                 return View();
             }
         }
+        [HttpGet]
+        public IActionResult AddProductId()
+        {
+            ViewBag.Msg = "";
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddProductId(Product product)
+        {
+            bool result = _adminRepository.AddProductId(product);
+            if (!result)
+            {
+                ViewBag.Msg = "This product is already exists";
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Home", "Home");
+            }
+        }
+        [HttpGet]
+        public IActionResult UpdateProduct() 
+        {
+          
+           
+            return View();
+
+        }
+       
+        [HttpGet]
+        public  IActionResult UpdateProducts(string Email)
+        {
+            var res = _adminRepository.GetProductbyId(Convert.ToInt32(Email)); ;
+            if(res==null)
+            {
+                TempData["id"]= "Id does not exist.";
+                
+                return RedirectToAction("UpdateProduct");
+;
+            }
+            return View(res);
+        }
+        [HttpPost]
+        public IActionResult UpdateProducts(int Id,Product product)
+        {
+           _adminRepository.UpdateProduct(product);
+            return RedirectToAction("UpdateProduct", "Admin");
+        }
+        [HttpGet]
+        public IActionResult DeleteProductId()
+        {
+           
+            return View();
+
+        }
+        
+        public IActionResult DeleteProduct(int Id)
+        {
+          bool t=  _adminRepository.DeleteProductId(Id);
+            if(t)
+            {
+                return RedirectToAction("Home", "Home");
+
+            }
+            else
+            {
+                TempData["msg"] = "product with entered user id doesnt exist";
+                
+                return RedirectToAction("DeletePRoductId");
+            }
+
+        }
+        public IActionResult GetAllOrders()
+        {
+            return View(_adminRepository.GetAllOrders());
+        }
+          
     }
 }
