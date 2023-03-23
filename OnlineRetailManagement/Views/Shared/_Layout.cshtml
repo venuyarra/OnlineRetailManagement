@@ -28,7 +28,7 @@
                        
                             @if (User.Identity.IsAuthenticated)
                             {
-                            @if (User.Claims.ToList()[1].ToString() == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role: User")
+                            @if (User.Claims.ToList()[1].Value== "User")
                             {
 
                                 <li class="nav-item">
@@ -48,6 +48,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Logout">Logout</a>
                                 </li>
+                                
                             }
                         }
                         else
@@ -56,6 +57,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">login</a>
                                 </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="AddUser" asp-controller="Admin" asp-action="AddUser">Register</a>
+                            </li>
                             }
                             
 

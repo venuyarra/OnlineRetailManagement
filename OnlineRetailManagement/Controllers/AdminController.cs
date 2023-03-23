@@ -3,11 +3,21 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using OnlineRetailManagement.Models;
 using System.Security.Claims;
+using OnlineRetailManagement.Repository;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace OnlineRetailManagement.Controllers
 {
     public class AdminController : Controller
     {
+        private IAdminRepository _adminRepository;
+     
+
+        public AdminController(IAdminRepository adminRepository) 
+        {
+            _adminRepository = adminRepository;
+        }
+
         public IActionResult Login(string ReturnUrl)
         {
             ViewBag.ReturnUrl = ReturnUrl;
@@ -53,9 +63,33 @@ namespace OnlineRetailManagement.Controllers
             await HttpContext.SignOutAsync();
             return RedirectToAction("Home","Home");
         }
-        public IActionResult Index()
+        public IActionResult  AddUser()
         {
+            ViewBag.Msg = "";
             return View();
+        }
+        [HttpPost]
+        public IActionResult AddUser(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                bool s = _adminRepository.GetUser(user);
+                if (s)
+                {
+                    _adminRepository.AddUser(user);
+                    return RedirectToAction("Home", "Home");
+                }
+               
+                    ModelState.AddModelError(string.Empty,"This email is already taken. please register with new email");
+                return View();
+                
+
+            }
+            else
+            {
+                ViewBag.Msg = "Invalid Credentials";
+                return View();
+            }
         }
     }
 }

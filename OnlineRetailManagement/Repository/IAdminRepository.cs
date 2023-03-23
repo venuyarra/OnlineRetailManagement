@@ -9,5 +9,7 @@ namespace OnlineRetailManagement.Repository
         Boolean UpdateProductId(Product product);
         List<Product> GetAllProducts();
         List<Orders> GetAllOrders();
+        bool GetUser(User user);
+        void AddUser(User user);
     }
 }
