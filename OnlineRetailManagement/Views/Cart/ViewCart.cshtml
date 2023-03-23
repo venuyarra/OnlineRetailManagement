@@ -1,0 +1,61 @@
+﻿@model IEnumerable<OnlineRetailManagement.Models.ProductsInCart>
+
+@{
+    ViewData["Title"] = "ViewCart";
+}
+
+<style>
+    .container{
+    width:100%;
+    }
+    .div-img{
+       
+        width :33.3%;
+        height:300px;
+   
+        display:inline;
+
+    }
+</style>
+
+@{
+    if(@ViewBag.Count==0)
+    {
+        <p> you dont have any items in your cart</p>
+
+    }
+    else
+    {
+    int cartid;
+    double total=0;
+    foreach(var item in Model)
+    {
+        total += item.TotalPrice;
+        cartid = item.CartId;
+
+        string url = "/Images/" + @item.ProductId.ToString() + ".jpg";
+     
+        <div class="container">
+            <div class="div-img">
+               
+                <img src="@url">
+               
+                <p>@item.TotalPrice</p>
+                <a asp-action="DeleteProductFromCart" asp-controller="Cart" asp-route-id="@item.ProductId">Buy</a>
+
+            </div>
+        </div>
+
+    }
+    
+   
+    
+    <h5>Total Price  :</h5> 
+    <p>@total</p>
+    <div>
+        <a asp-action="Payment" asp-controller="Payment" asp-route-id="@Model.First().CartId">Buy</a>
+
+    </div>
+    }
+}
+  

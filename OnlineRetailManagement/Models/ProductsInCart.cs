@@ -15,7 +15,7 @@ namespace OnlineRetailManagement.Models
         [ForeignKey("product")]
         public int ProductId { get; set; }
         [Required]
-        public long TotalPrice { get; set; }
+        public double TotalPrice { get; set; }
         public Cart cart { get; set; }
         public Product product { get; set; }
 

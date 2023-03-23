@@ -12,7 +12,7 @@ namespace OnlineRetailManagement.Models
         [ForeignKey("user")]
         public String Email { get; set; }
         [Required]
-        bool Status { get; set; }
+        public bool Status { get; set; }
         public ICollection<ProductsInCart> ProductsInCart { get; set; }
         public ICollection<Orders> orders { get; set; }
         public User user { get; set; }

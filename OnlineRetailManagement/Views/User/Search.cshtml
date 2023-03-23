@@ -1,0 +1,30 @@
+﻿
+
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h1>Search</h1>
+
+<h4>Search</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Search">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label >name</label>
+                <input type="text" id="productname" class="form-control" />
+               
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" asp-action="DisplayAllProductsByName" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

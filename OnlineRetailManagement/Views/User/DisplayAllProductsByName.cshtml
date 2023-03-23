@@ -1,0 +1,46 @@
+﻿@model IEnumerable<OnlineRetailManagement.Models.Product>
+@{
+    ViewData["Title"] = "DisplayAllProductsByName";
+}
+<style>
+    .container{
+    width:100%;
+    }
+    .div-img{
+       
+        width :33.3%;
+        height:300px;
+        float:left;
+        display:inline;
+
+    }
+</style>
+
+@{
+    foreach(var item in Model)
+    {
+       
+        string url = "/Images/" + @item.productid.ToString() + ".jpg";
+     
+        <div class="container">
+            <div class="div-img">
+                <a asp-action="Description" asp-controller="User" asp-route-id=@item.productid>
+                <img src="@url"></a>
+               
+                <p>@item.productname</p>
+                <p>@item.productprice</p>
+            </div>
+        </div>
+       
+          
+        
+
+ 
+
+    }
+
+
+}
+
+
+

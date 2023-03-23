@@ -1,0 +1,40 @@
+﻿@model OnlineRetailManagement.Models.Payment
+
+@{
+    ViewData["Title"] = "Payment";
+}
+
+<h1>Payment for rs @ViewBag.Total</h1>
+
+<h4>Payment</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Payment">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="cardnumber" class="control-label"></label>
+                <input asp-for="cardnumber" class="form-control" />
+                <span asp-validation-for="cardnumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="cvv" class="control-label"></label>
+                <input asp-for="cvv" class="form-control" />
+                <span asp-validation-for="cvv" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="expirydate" class="control-label"></label>
+                <input asp-for="expirydate" class="form-control" />
+                <span asp-validation-for="expirydate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" asp-action="PaymentDone" >submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

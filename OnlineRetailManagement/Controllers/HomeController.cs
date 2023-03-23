@@ -1,32 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineRetailManagement.Models;
+using OnlineRetailManagement.Repository;
 using System.Diagnostics;
 
 namespace OnlineRetailManagement.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private IUserRepository _userRepository;
+        public HomeController(IUserRepository userRepository)
         {
-            _logger = logger;
+            _userRepository = userRepository;
         }
-
-        public IActionResult Index()
+    
+        public IActionResult Home()
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(_userRepository.GetAllProducts());
         }
     }
 }

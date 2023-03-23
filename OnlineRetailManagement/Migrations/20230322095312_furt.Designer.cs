@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineRetailManagement.Models;
 
@@ -11,9 +12,11 @@ using OnlineRetailManagement.Models;
 namespace OnlineRetailManagement.Migrations
 {
     [DbContext(typeof(OnlineRetaildbContext))]
-    partial class OnlineRetaildbContextModelSnapshot : ModelSnapshot
+    [Migration("20230322095312_furt")]
+    partial class furt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,8 +55,8 @@ namespace OnlineRetailManagement.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("totalprice")
-                        .HasColumnType("float");
+                    b.Property<long>("totalprice")
+                        .HasColumnType("bigint");
 
                     b.HasKey("OrderId");
 

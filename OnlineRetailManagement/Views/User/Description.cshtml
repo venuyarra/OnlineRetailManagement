@@ -1,0 +1,32 @@
+﻿@model OnlineRetailManagement.Models.Product
+@{
+    ViewData["Title"] = "Description";
+}
+<style>
+    .img-div
+    {
+   text-align:center;
+    }
+
+</style>
+
+<div class="Img-div">
+    @{
+            string url = "/Images/" + @Model.productid.ToString() + ".jpg";
+
+    <img src=@url >
+    <p>@Model.productname</p>
+    <p>@Model.productprice</p>
+    <p>@Model.productdescription</p>
+       
+      
+
+            <a class="btn btn-primary" asp-action="AddtoCart" asp-controller="Cart" asp-route-id=@Model.productid>Add to cart</a>
+
+    }
+   
+        
+
+</div>
+
+

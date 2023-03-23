@@ -14,7 +14,7 @@ namespace OnlineRetailManagement.Models
         [Required]
         public DateTime OrderDate { get; set; }
         [Required]
-        public long totalprice { get; set; }
+        public double totalprice { get; set; }
         public Cart cart { get; set; }
 
     }

@@ -5,9 +5,15 @@ namespace OnlineRetailManagement.Repository
     public interface IUserRepository
     {
         List<Product> GetAllProductsByName(string ProductName);
-        Boolean AddProducttoCart(Product product);
+        void AddProducttoCart(int productid,string useremail);
         Boolean AddProductstoOrders(Orders orders);
-        Boolean DeleteProductFromCart(ProductsInCart productincart);
+        void DeleteProductFromCart(int productid,string useremail);
+        Product GetProduct(int id);
+        User GetUser(Login login);
+        List<Product> GetAllProducts();
+        List<ProductsInCart> GetAllProductsFromCart(string useremail);
+        void RemoveCart(int cartid,double total);
 
+        List<Orders> GetAllOrders(string email);
     }
 }
