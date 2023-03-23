@@ -97,7 +97,7 @@ namespace OnlineRetailManagement.Controllers
         [HttpGet]
         public IActionResult AddProductId()
         {
-            ViewBag.Msg = "";
+            
             return View();
         }
         [HttpPost]

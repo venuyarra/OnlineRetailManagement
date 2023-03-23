@@ -85,6 +85,7 @@ namespace OnlineRetailManagement.Repository
         public List<ProductsInCart> GetAllProductsFromCart(string useremail)
         {
             var activecart = _context.carts.FirstOrDefault(o => o.Status == true && o.Email == useremail);
+            
             return _context.productsincart.Where(o=>o.CartId==activecart.CartId).ToList();
         }
        public void RemoveCart(int cartid,double total)
@@ -115,6 +116,10 @@ namespace OnlineRetailManagement.Repository
 
             //var orders=_context.orders.Include(o => o.cart).Where(o=>o.CartId==o.cart.CartId &&o.cart.Email==email);
             return orders.ToList();
+        }
+        public Cart GetCart(string email)
+        {
+            return _context.carts.FirstOrDefault(o => o.Status == true && o.Email == email);
         }
     }
 }

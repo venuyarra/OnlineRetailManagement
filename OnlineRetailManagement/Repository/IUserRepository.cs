@@ -15,5 +15,6 @@ namespace OnlineRetailManagement.Repository
         void RemoveCart(int cartid,double total);
 
         List<Orders> GetAllOrders(string email);
+        Cart GetCart(string email);
     }
 }

@@ -5,6 +5,7 @@ using OnlineRetailManagement.Models;
 using OnlineRetailManagement.Repository;
 using System.Security.Claims;
 using System.Drawing;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OnlineRetailManagement.Controllers
 {
@@ -78,6 +79,7 @@ namespace OnlineRetailManagement.Controllers
             return View(_userRepository.GetAllProducts());
         }
         [HttpGet]
+        [Authorize]
         public IActionResult Search()
         {
             return View();
